@@ -1,4 +1,4 @@
-export const descriptors = [
+export const descriptors: string[] = [
   'Lowly',
   'Ace',
   'Elven',
@@ -18,9 +18,23 @@ export const descriptors = [
   'Scatterbrained',
   'Caffeinated',
   'Unknown',
-];
+]
 
-export const roles = [
+export const moreDescriptors: string[] = [
+  'Human',
+  // 'Dwarven',
+  // 'Undead',
+  // 'Elven',
+  'Draconic',
+  'Devious',
+  'Speedy',
+  'Large',
+  'Law-Abiding',
+  '"Law-Abiding"',
+  'Vampiric',
+]
+
+export const roles: string[] = [
   'Archer',
   'Fighter',
   'Hemomancer',
@@ -41,4 +55,16 @@ export const roles = [
   'Farmer',
   'Soldier',
   'Spy',
-];
+]
+
+export const moreRoles: string[] = [
+  'Healer',
+  'Warrior',
+  'Alchemist',
+  // 'Archer',
+  'Druid',
+  'Ice-Mage',
+  'Face-Puncher',
+  'Berserker',
+  'Smooth-Talker',
+]
