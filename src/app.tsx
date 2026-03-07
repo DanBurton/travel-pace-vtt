@@ -29,6 +29,12 @@ function PdfButton() {
 function LearnButton() {
   const location = useLocation()
   const active = location.pathname.startsWith(`${basename}learn`)
+  console.log({
+    button: 'Learn',
+    active,
+    basename: basename,
+    pathname: location.pathname,
+  })
   return (
     <NavLink className={active ? 'activeNav' : 'inactiveNav'} to='/learn'>
       Learn
@@ -39,6 +45,12 @@ function LearnButton() {
 function PlayButton() {
   const location = useLocation()
   const active = location.pathname.startsWith(`${basename}play`)
+  console.log({
+    button: 'Play',
+    active,
+    basename: basename,
+    pathname: location.pathname,
+  })
   return (
     <NavLink className={active ? 'activeNav' : 'inactiveNav'} to='/play'>
       Play
@@ -92,5 +104,9 @@ const router = createBrowserRouter(
 )
 
 export default function App(): React.ReactElement {
-  return <RouterProvider router={router} />
+  return (
+    <React.StrictMode>
+      <RouterProvider router={router} />
+    </React.StrictMode>
+  )
 }
