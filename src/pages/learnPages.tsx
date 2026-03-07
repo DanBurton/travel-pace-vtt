@@ -134,13 +134,13 @@ export const learnPages: (() => React.ReactNode)[] = [
           found themselves sitting at a table in the Ashendale inn, free mugs of
           ale in front of them as meager thanks for their good deeds.
           <br />
-          Player 1 (Owen, the half-orc stabbomancer): “So… That was awkward.”
+          Player 1 (Owen, the half-orc stabbomancer): "So… That was awkward."
           <br />
-          Player 2 (Themetriana, the renowned orator): “Shut up, you almost got
-          me killed!”
+          Player 2 (Themetriana, the renowned orator): "Shut up, you almost got
+          me killed!"
           <br />
-          Player 3 (Felix, the big puncher): “He already apologized, get over
-          it.”
+          Player 3 (Felix, the big puncher): "He already apologized, get over
+          it."
         </em>
       </p>
       <p>
@@ -190,15 +190,15 @@ export const learnPages: (() => React.ReactNode)[] = [
       </p>
       <p>
         This pattern continues, with the third Player setting a scene and
-        establishing the next destination
+        establishing the next destination{' '}
         <em>
-          (Player 3 (as Felix): “So we have to find the person mind controlling
-          the wizard!”)
+          (Player 3 (as Felix): "So we have to find the person mind controlling
+          the wizard!")
         </em>
-        , and then the fourth
+        , and then the fourth{' '}
         <em>
-          (Player 4 (as Rowena): “At the bottom of that dungeon is the beast
-          that has caused all of this chaos.”)
+          (Player 4 (as Rowena): "At the bottom of that dungeon is the beast
+          that has caused all of this chaos.")
         </em>
         and so on until the last player takes their turn. Instead of setting a
         scene, the last Player has the honor of narrating the final
@@ -224,37 +224,37 @@ export const learnPages: (() => React.ReactNode)[] = [
       </p>
       <p>
         <em>
-          Player 5: “Gurkle, the half drunken hierophant, retired after that.
+          Player 5: "Gurkle, the half drunken hierophant, retired after that.
           They said nothing would live up to the excitement. If Owen ends up
-          opening that tavern he mentioned, Gurkle would become a regular.”
+          opening that tavern he mentioned, Gurkle would become a regular."
           <br />
-          Player 1: “Naturally! Owen would absolutely save Gurkle a spot at the
-          bar. Reserved seating, so they can shoot the shit.”
+          Player 1: "Naturally! Owen would absolutely save Gurkle a spot at the
+          bar. Reserved seating, so they can shoot the shit."
           <br />
-          Player 4: “Rowena would wander the land, looking for more adventure.
-          There are always more people who need help.”
+          Player 4: "Rowena would wander the land, looking for more adventure.
+          There are always more people who need help."
           <br />
-          Player 3: “I think Rowena and Felix kinda had a thing, would she let
-          Felix tag along?
+          Player 3: "I think Rowena and Felix kinda had a thing, would she let
+          Felix tag along?"
           <br />
-          ”Player 4 (as Rowena): “Felix, I thought I'd be waiting for you
-          forever. Never do that tome again.”
+          Player 4 (as Rowena): "Felix, I thought I'd be waiting for you
+          forever. Never do that tome again."
           <br />
-          Player 3 (as Felix): “I would never dream of disappointing you.”
+          Player 3 (as Felix): "I would never dream of disappointing you."
           <br />
-          Player 2: “Themetriana died in the battle with the Telestrade.”
+          Player 2: "Themetriana died in the battle with the Telestrade."
           <br />
-          Player 1: “Tragic! Was it heroic at least?”
+          Player 1: "Tragic! Was it heroic at least?"
           <br />
-          Player 2: “Incredibly. She was probably trying to save Owen when he
-          got himself in trouble.”
+          Player 2: "Incredibly. She was probably trying to save Owen when he
+          got himself in trouble."
           <br />
-          Player 1: “That tracks. Can Owen plan her funeral?”
+          Player 1: "That tracks. Can Owen plan her funeral?"
           <br />
-          Player 2: “... I think Rowena would be better suited to that.”
+          Player 2: "... I think Rowena would be better suited to that."
           <br />
-          Player 4 (as Rowena): “It's what Themetriana would have wanted, Owen,
-          but you can help pick out flowers.”
+          Player 4 (as Rowena): "It's what Themetriana would have wanted, Owen,
+          but you can help pick out flowers."
         </em>
       </p>
       <p>
@@ -289,7 +289,7 @@ export const learnPages: (() => React.ReactNode)[] = [
         <strong>Suggestion #1-</strong> Offer your opinion, in character, on
         whatever just happened. Saying something as simple as{' '}
         <em>
-          “I think that guy was sketchy and we shouldn't trust what he told us,”
+          "I think that guy was sketchy and we shouldn't trust what he told us,"
         </em>{' '}
         will prompt others to keep talking. Do the other characters agree?
         Disagree? Do we even have the luxury of being skeptical?? Now the
@@ -306,17 +306,17 @@ export const learnPages: (() => React.ReactNode)[] = [
       </p>
       <p>
         <em>
-          Player 1: “That guy was useless, why did we even come here?”
+          Player 1: "That guy was useless, why did we even come here?"
           <br />
-          Player 2: “It wasn't totally useless, we got a clue. Besides, we have
+          Player 2: "It wasn't totally useless, we got a clue. Besides, we have
           to find out where Captain Jaklebeard sailed off to before he's too far
-          gone to chase.
+          gone to chase."
           <br />
-          Player 1: “I guess we have a clue now, but I have no clue how to
-          interpret it.
+          Player 1: "I guess we have a clue now, but I have no clue how to
+          interpret it."
           <br />
-          ”Player 3: “Obviously it means we have to sail to the Cape of Dreaded
-          Seaclaws. Were you not paying attention?”
+          Player 3: "Obviously it means we have to sail to the Cape of Dreaded
+          Seaclaws. Were you not paying attention?"
         </em>
       </p>
     </div>

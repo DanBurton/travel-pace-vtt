@@ -79,7 +79,7 @@ they caught their first glimpse of the promised ruins across the rolling tundra.
 When the Pinlok Army came looking for conscripts to fight the ever present war in the west,
 no excuse was good enough. The first time they came, they took volunteers.
 The next time, most healthy adults whether they wanted to go or not.
-After that, they took slightly older recruits, or later anyone with a “non essential” job.
+After that, they took slightly older recruits, or later anyone with a "non essential" job.
 Until, after so many iterations, it's almost surprising that they left anyone behind at all.
 `,
       `
