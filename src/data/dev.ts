@@ -1,12 +1,13 @@
 export const flags = {
-  'prefill': false,
+  prefill: false,
 }
 
 export const sampleCharacter = {
   description: 'Haunted Untrained Bard',
   name: 'Herpy Derpson',
   pronouns: 'he/him',
-  physicalDescription: 'A vaguely humanoid silhouette, perpetually shrouded in a ghostly mist.',
+  physicalDescription:
+    'A vaguely humanoid silhouette, perpetually shrouded in a ghostly mist.',
 }
 
 export const sampleOtherPlayers = [

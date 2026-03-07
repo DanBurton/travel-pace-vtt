@@ -1,5 +1,14 @@
 import React from 'react'
-import { ScrollRestoration, NavLink, Route, createBrowserRouter, createRoutesFromElements, RouterProvider, useOutlet, useLocation } from 'react-router'
+import {
+  ScrollRestoration,
+  NavLink,
+  Route,
+  createBrowserRouter,
+  createRoutesFromElements,
+  RouterProvider,
+  useOutlet,
+  useLocation,
+} from 'react-router'
 import Learn from './pages/learn'
 import Play from './pages/play'
 
@@ -18,13 +27,21 @@ function PdfButton() {
 function LearnButton() {
   const location = useLocation()
   const active = location.pathname.startsWith('/learn')
-  return <NavLink className={active ? 'activeNav' : 'inactiveNav'} to='/learn'>Learn</NavLink>
+  return (
+    <NavLink className={active ? 'activeNav' : 'inactiveNav'} to='/learn'>
+      Learn
+    </NavLink>
+  )
 }
 
 function PlayButton() {
   const location = useLocation()
   const active = location.pathname.startsWith('/play')
-  return <NavLink className={active ? 'activeNav' : 'inactiveNav'} to='/play'>Play</NavLink>
+  return (
+    <NavLink className={active ? 'activeNav' : 'inactiveNav'} to='/play'>
+      Play
+    </NavLink>
+  )
 }
 
 function AppLayout() {
@@ -35,7 +52,9 @@ function AppLayout() {
       <ScrollRestoration />
 
       <div id='header'>
-        <h1><NavLink to='/'>Travel Pace</NavLink></h1>
+        <h1>
+          <NavLink to='/'>Travel Pace</NavLink>
+        </h1>
         <nav>
           <PdfButton />
           <LearnButton />

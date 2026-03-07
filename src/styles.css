@@ -65,7 +65,8 @@ a {
   display: inline-block;
 }
 
-a.link-button, button {
+a.link-button,
+button {
   /* color: #0066cc; */
   /* background-color: white; */
   font-size: 14px;

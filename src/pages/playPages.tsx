@@ -22,10 +22,7 @@ import {
   roles,
   moreRoles,
 } from '../data/descriptors'
-import {
-  renderScenario,
-  scenarios,
-} from '../data/scenarios'
+import { renderScenario, scenarios } from '../data/scenarios'
 
 export const playSteps = [
   'Start: The first player establishes the world and scenario.',
@@ -89,8 +86,14 @@ export function characterToString(character: Character): string {
 }
 
 function SortablePlayerItem({ id, player }: { id: number; player: string }) {
-  const { attributes, listeners, setNodeRef, transform, transition, isDragging } =
-    useSortable({ id })
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({ id })
 
   const style: React.CSSProperties = {
     transform: CSS.Transform.toString(transform),
@@ -99,11 +102,11 @@ function SortablePlayerItem({ id, player }: { id: number; player: string }) {
   }
 
   return (
-    <li ref={setNodeRef} style={style} className="sortable-item">
+    <li ref={setNodeRef} style={style} className='sortable-item'>
       <button
         type='button'
         aria-label={`Drag to reorder ${player}`}
-        className="sortable-handle"
+        className='sortable-handle'
         {...attributes}
         {...listeners}
       >
@@ -172,9 +175,7 @@ export const playPages: PlayPage[] = [
         <input
           type='text'
           value={character.name || ''}
-          onChange={(e) =>
-            setCharacter({ ...character, name: e.target.value })
-          }
+          onChange={(e) => setCharacter({ ...character, name: e.target.value })}
         />{' '}
         <br />
         Pronouns:{' '}
@@ -214,15 +215,16 @@ export const playPages: PlayPage[] = [
     return (
       <div>
         <h2>Characters</h2>
-        <p>Simply copy/paste to share character descriptions with other players.</p>
+        <p>
+          Simply copy/paste to share character descriptions with other players.
+        </p>
         <ul>
-          <li key='player'>
-            {characterToString(character)}
-          </li>
+          <li key='player'>{characterToString(character)}</li>
           {(otherPlayers || []).map((player, index) => {
             return (
               <li key={`other-player-${index}`}>
-                {player} <button onClick={() => removePlayer(index)}>Remove</button>
+                {player}{' '}
+                <button onClick={() => removePlayer(index)}>Remove</button>
               </li>
             )
           })}
@@ -230,10 +232,14 @@ export const playPages: PlayPage[] = [
         <input
           id='new-player'
           type='text'
-          onKeyUp={(e) => { if (e.key === 'Enter') { submitNewPlayer() }}}
+          onKeyUp={(e) => {
+            if (e.key === 'Enter') {
+              submitNewPlayer()
+            }
+          }}
           onChange={(e) => setNewPlayer(e.target.value)}
           value={newPlayer}
-          />
+        />
         <button onClick={submitNewPlayer}>Add Player</button>
       </div>
     )
@@ -265,11 +271,20 @@ export const playPages: PlayPage[] = [
     return (
       <div>
         <h2>Turn Order</h2>
-        <p>Drag and drop to reorder. (Alternatively: Tab, shift+tab, enter, arrow keys, esc.)</p>
-        <button onClick={() => {
-          const shuffledOrder = [...playerOrder].sort(() => Math.random() - 0.5)
-          setPlayerOrder(shuffledOrder)
-        }}>Randomize</button>
+        <p>
+          Drag and drop to reorder. (Alternatively: Tab, shift+tab, enter, arrow
+          keys, esc.)
+        </p>
+        <button
+          onClick={() => {
+            const shuffledOrder = [...playerOrder].sort(
+              () => Math.random() - 0.5
+            )
+            setPlayerOrder(shuffledOrder)
+          }}
+        >
+          Randomize
+        </button>
         <DndContext
           sensors={sensors}
           collisionDetection={closestCenter}
@@ -279,7 +294,7 @@ export const playPages: PlayPage[] = [
             items={playerOrder}
             strategy={verticalListSortingStrategy}
           >
-            <ul className="sortable-list">
+            <ul className='sortable-list'>
               {playerOrder.map((index) => (
                 <SortablePlayerItem
                   key={index}
@@ -303,7 +318,13 @@ export const playPages: PlayPage[] = [
       <div>
         <div className='header-with-button'>
           <h2>Play!</h2>
-          <button onClick={() => setCurrentPlayStep((currentPlayStep + 1) % playSteps.length)}>Next Step</button>
+          <button
+            onClick={() =>
+              setCurrentPlayStep((currentPlayStep + 1) % playSteps.length)
+            }
+          >
+            Next Step
+          </button>
         </div>
 
         <p>{playSteps[currentPlayStep]}</p>
@@ -313,19 +334,37 @@ export const playPages: PlayPage[] = [
           ))}
         </ol>
         <div>
-          <div className="header-with-button">
+          <div className='header-with-button'>
             <h3>Roleplay Hint</h3>
-            <button onClick={() => setCurrentHintIndex((currentHintIndex + 1) % roleplayHints.length)}>Next Hint</button>
+            <button
+              onClick={() =>
+                setCurrentHintIndex(
+                  (currentHintIndex + 1) % roleplayHints.length
+                )
+              }
+            >
+              Next Hint
+            </button>
           </div>
-          <p><strong>{`[Suggestion #${currentHintIndex + 1}]`}</strong> {hint}</p>
-          <div className="header-with-button">
+          <p>
+            <strong>{`[Suggestion #${currentHintIndex + 1}]`}</strong> {hint}
+          </p>
+          <div className='header-with-button'>
             <h3>Campaign Scenario</h3>
-            <button onClick={() => setCurrentScenarioIndex((currentScenarioIndex + 1) % scenarios.length)}>Next Scenario</button>
+            <button
+              onClick={() =>
+                setCurrentScenarioIndex(
+                  (currentScenarioIndex + 1) % scenarios.length
+                )
+              }
+            >
+              Next Scenario
+            </button>
           </div>
           <small>Quick starter. Try making your own!</small>
           {renderScenario(currentScenarioIndex)}
         </div>
       </div>
     )
-  }
+  },
 ]
