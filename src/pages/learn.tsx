@@ -1,5 +1,6 @@
 import { useParams, NavLink } from 'react-router'
 import { learnPages } from './learnPages'
+import ProgressBar from '../components/progressBar'
 
 export default function Learn() {
   const params = useParams()
@@ -27,6 +28,7 @@ export default function Learn() {
     <div>
       <div>
         <BackButton /> <NextButton />
+        <br /><ProgressBar page={page} total={learnPages.length} />
       </div>
       <PageContent />
       <div>

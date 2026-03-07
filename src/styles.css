@@ -158,3 +158,16 @@ video {
 .header-with-button h3 {
   margin: 0.75rem 0 0.5rem;
 }
+
+.progress-bar {
+  height: 8px;
+  background-color: #eee;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-top: 0.5rem;
+}
+.progress-bar-fill {
+  height: 100%;
+  background-color: #4caf50;
+  transition: width 0.3s ease;
+}

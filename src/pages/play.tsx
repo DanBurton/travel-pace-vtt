@@ -7,6 +7,7 @@ import {
   sampleOtherPlayers,
   samplePlayerOrder,
 } from '../data/dev'
+import ProgressBar from '../components/progressBar'
 
 export default function Play() {
   const params = useParams()
@@ -58,6 +59,7 @@ export default function Play() {
   return (
     <div>
       <BackButton /> <NextButton />
+      <br /><ProgressBar page={page} total={playPages.length} />
       <PageContent
         character={character}
         setCharacter={setCharacter}
