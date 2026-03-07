@@ -12,15 +12,17 @@ import {
 import Learn from './pages/learn'
 import Play from './pages/play'
 
+const basename = import.meta.env.BASE_URL
+
 function PdfButton() {
   return (
-    <NavLink
-      to='/Travel%20Pace%20v0.6.1.pdf'
+    <a
+      href={`${basename}Travel%20Pace%20v0.6.1.pdf`}
       target='_blank'
       rel='noopener noreferrer'
     >
       PDF
-    </NavLink>
+    </a>
   )
 }
 
