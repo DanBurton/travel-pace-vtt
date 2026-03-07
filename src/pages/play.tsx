@@ -1,6 +1,7 @@
 import React from 'react'
 import { NavLink, useParams } from 'react-router'
 import { Character, characterToString, playPages } from './playPages'
+import { flags, sampleCharacter, sampleOtherPlayers, samplePlayerOrder } from '../data/dev'
 
 export default function Play() {
   const params = useParams()
@@ -12,24 +13,12 @@ export default function Play() {
   const NextButton = () =>
     isLastPage ? <></> : <NavLink className={'link-button'} to={`/play/${page + 1}`}>Next</NavLink>
 
-  const [character, setCharacter] = React.useState<Character>({
-    description: 'Haunted Untrained Bard',
-    name: 'Herpy Derpson',
-    pronouns: 'he/him',
-    physicalDescription: 'A vaguely humanoid silhouette, perpetually shrouded in a ghostly mist.',
-  })
+  const [character, setCharacter] = React.useState<Character>(flags.prefill ? sampleCharacter : {})
   const [more, setMore] = React.useState(false)
-  const [otherPlayers, setOtherPlayers] = React.useState<string[]>([
-    'Cloud | he/him | Savvy Ace Soldier | Spiky-haired edgy antisocial twink, shoulder pauldron, baggy pants, big sword',
-    'Pat | she/her | Elven Well-Traveled Sparkthrower | Diva in a bright orange sun dress, intense fiery red eyes and bouncy curly short hair',
-    'Jordan | they/them | Scatterbrained Clerk | tall and gangly, pocket protector and cargo shorts, facial expression of constant apology',
-  ])
+  const [otherPlayers, setOtherPlayers] = React.useState<string[]>(flags.prefill ? sampleOtherPlayers : [])
   const players = [characterToString(character), ...otherPlayers]
-  // playerOrder is an array of indices into the players array, representing the current turn order.
-  const [playerOrder, setPlayerOrder] = React.useState<number[]>([
-    0, 1, 2, 3,
-  ])
-  const PageContent = playPages[page]
+  // playerOrder is an array of indices into the players array, representing the turn order.
+  const [playerOrder, setPlayerOrder] = React.useState<number[]>(flags.prefill ? samplePlayerOrder : [0])
   const resetPlayerOrder = (length: number) => setPlayerOrder(Array.from({ length }, (_, i) => i))
   const addPlayer = (player: string) => {
     const newOtherPlayers = [...otherPlayers, player]
@@ -42,6 +31,7 @@ export default function Play() {
     resetPlayerOrder(1 + newOtherPlayers.length)
   }
 
+  const PageContent = playPages[page]
   return (
     <div>
       <BackButton /> <NextButton />
