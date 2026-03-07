@@ -2,7 +2,7 @@
   "name": "travel-pace-vtt",
   "version": "0.1.0",
   "description": "",
-  "license": "MIT",
+  "license": "TBD - currently all rights reserved",
   "scripts": {
     "start": "vite",
     "host": "vite --host",
