@@ -3,7 +3,7 @@ import {
   ScrollRestoration,
   NavLink,
   Route,
-  createBrowserRouter,
+  createHashRouter,
   createRoutesFromElements,
   RouterProvider,
   useOutlet,
@@ -11,8 +11,6 @@ import {
 } from 'react-router'
 import Learn from './pages/learn'
 import Play from './pages/play'
-
-const basename = import.meta.env.BASE_URL
 
 function PdfButton() {
   return (
@@ -28,13 +26,7 @@ function PdfButton() {
 
 function LearnButton() {
   const location = useLocation()
-  const active = location.pathname.startsWith(`${basename}learn`)
-  console.log({
-    button: 'Learn',
-    active,
-    basename: basename,
-    pathname: location.pathname,
-  })
+  const active = location.pathname.startsWith(`/learn`)
   return (
     <NavLink className={active ? 'activeNav' : 'inactiveNav'} to='/learn'>
       Learn
@@ -44,13 +36,7 @@ function LearnButton() {
 
 function PlayButton() {
   const location = useLocation()
-  const active = location.pathname.startsWith(`${basename}play`)
-  console.log({
-    button: 'Play',
-    active,
-    basename: basename,
-    pathname: location.pathname,
-  })
+  const active = location.pathname.startsWith(`/play`)
   return (
     <NavLink className={active ? 'activeNav' : 'inactiveNav'} to='/play'>
       Play
@@ -90,17 +76,14 @@ function Home() {
   )
 }
 
-const router = createBrowserRouter(
+const router = createHashRouter(
   createRoutesFromElements(
     <Route element={<AppLayout />}>
       <Route index element={<Home />} />
       <Route path='/learn/:page?' element={<Learn />} />
       <Route path='/play/:page?' element={<Play />} />
     </Route>
-  ),
-  {
-    basename,
-  }
+  )
 )
 
 export default function App(): React.ReactElement {
