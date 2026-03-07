@@ -12,6 +12,8 @@ import {
 import Learn from './pages/learn'
 import Play from './pages/play'
 
+const basename = import.meta.env.BASE_URL
+
 function PdfButton() {
   return (
     <NavLink
@@ -26,7 +28,7 @@ function PdfButton() {
 
 function LearnButton() {
   const location = useLocation()
-  const active = location.pathname.startsWith('/learn')
+  const active = location.pathname.startsWith(`${basename}learn`)
   return (
     <NavLink className={active ? 'activeNav' : 'inactiveNav'} to='/learn'>
       Learn
@@ -36,7 +38,7 @@ function LearnButton() {
 
 function PlayButton() {
   const location = useLocation()
-  const active = location.pathname.startsWith('/play')
+  const active = location.pathname.startsWith(`${basename}play`)
   return (
     <NavLink className={active ? 'activeNav' : 'inactiveNav'} to='/play'>
       Play
@@ -83,7 +85,10 @@ const router = createBrowserRouter(
       <Route path='/learn/:page?' element={<Learn />} />
       <Route path='/play/:page?' element={<Play />} />
     </Route>
-  )
+  ),
+  {
+    basename,
+  }
 )
 
 export default function App(): React.ReactElement {
