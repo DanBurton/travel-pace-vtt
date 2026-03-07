@@ -28,7 +28,8 @@ export default function Learn() {
     <div>
       <div>
         <BackButton /> <NextButton />
-        <br /><ProgressBar page={page} total={learnPages.length} />
+        <br />
+        <ProgressBar page={page} total={learnPages.length} />
       </div>
       <PageContent />
       <div>

@@ -59,7 +59,8 @@ export default function Play() {
   return (
     <div>
       <BackButton /> <NextButton />
-      <br /><ProgressBar page={page} total={playPages.length} />
+      <br />
+      <ProgressBar page={page} total={playPages.length} />
       <PageContent
         character={character}
         setCharacter={setCharacter}
