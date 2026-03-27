@@ -2,40 +2,55 @@
 body {
   margin: 0;
   padding: 1rem;
-  font-family:
-    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue',
-    Arial, sans-serif;
+  font-family: 'Lora', Georgia, serif;
   font-size: 18px;
   line-height: 1.6;
+  background-color: #faf7f2;
+  color: #2d1f0e;
 }
 
 em {
   font-style: italic;
-  color: purple;
+  color: #8b6914;
 }
 
 input[type='text'] {
+  font-family: 'Lora', Georgia, serif;
   font-size: 18px;
   padding: 0.5rem;
   min-height: 44px;
   width: 100%;
   box-sizing: border-box;
+  background-color: #fdf9f3;
+  border: 1px solid #c8b89a;
+  border-radius: 4px;
+  color: #2d1f0e;
+}
+
+input[type='checkbox'] {
+  accent-color: #7a3b1e;
 }
 
 h1 {
+  font-family: 'Cinzel', 'Times New Roman', serif;
   font-size: 1.5rem;
   margin: 0;
   padding-right: 1rem;
+  letter-spacing: 0.03em;
 }
 
 h2 {
-  font-size: 1.5rem;
+  font-family: 'Cinzel', 'Times New Roman', serif;
+  font-size: 1.4rem;
   margin: 1rem 0 0.75rem;
+  letter-spacing: 0.02em;
 }
 
 h3 {
-  font-size: 1.25rem;
+  font-family: 'Cinzel', 'Times New Roman', serif;
+  font-size: 1.1rem;
   margin: 0.75rem 0 0.5rem;
+  letter-spacing: 0.02em;
 }
 
 p {
@@ -46,7 +61,7 @@ p {
 #header {
   display: flex;
   align-items: center;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #c8b89a;
   padding-bottom: 0.5rem;
   margin-bottom: 1rem;
   flex-wrap: wrap;
@@ -60,22 +75,32 @@ p {
 
 /* Links and navigation */
 a {
-  color: #0066cc;
+  color: #7a3b1e;
   text-decoration: none;
   display: inline-block;
 }
 
-a.link-button,
+.link-button,
 button {
-  /* color: #0066cc; */
-  /* background-color: white; */
+  font-family: 'Lora', Georgia, serif;
   font-size: 14px;
   padding: 0.5rem 0.5rem;
   border-radius: 4px;
-  border-width: 1px;
-  border-style: solid;
-  /* min-height: 44px; */
+  border: 1px solid #c8b89a;
+  background-color: #fdf9f3;
+  color: #2d1f0e;
   cursor: pointer;
+}
+
+.link-button-disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.link-button:hover,
+button:hover {
+  background-color: #f0e8d8;
+  border-color: #7a3b1e;
 }
 
 /* Page content */
@@ -85,18 +110,21 @@ button {
 }
 
 #header nav a {
-  font-size: 1.25rem;
-  font-weight: 600;
+  font-family: 'Cinzel', 'Times New Roman', serif;
+  font-size: 1rem;
+  font-weight: 400;
   margin-right: 1rem;
+  letter-spacing: 0.03em;
 }
 
 #header nav a.activeNav {
-  font-weight: bold;
+  font-weight: 600;
   text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 a:hover {
-  color: darkblue;
+  color: #4a1e0a;
 }
 
 /* Make images and media responsive */
@@ -125,6 +153,27 @@ video {
   }
 }
 
+/* HintDeck: navigable card */
+.hint-deck {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin: 0.5rem 0;
+}
+
+.hint-deck-card {
+  flex: 1;
+  background-color: #f0e8d8;
+  border: 1px solid #c8b89a;
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  box-shadow: 0 1px 4px rgba(45, 31, 14, 0.08);
+}
+
+.hint-deck-card p {
+  margin: 0;
+}
+
 /* Sortable player item styles */
 .sortable-list {
   padding: 0;
@@ -141,11 +190,12 @@ video {
 .sortable-handle {
   cursor: grab;
   touch-action: none;
-  border: 1px solid currentColor;
+  border: 1px solid #c8b89a;
   border-radius: 4px;
-  background: transparent;
+  background: #fdf9f3;
   padding: 0.1rem 0.35rem;
   line-height: 1;
+  color: #7a3b1e;
 }
 
 /* Header with adjacent button */
@@ -161,13 +211,70 @@ video {
 
 .progress-bar {
   height: 8px;
-  background-color: #eee;
+  background-color: #e8dfd0;
   border-radius: 4px;
   overflow: hidden;
   margin-top: 0.5rem;
 }
 .progress-bar-fill {
   height: 100%;
-  background-color: #4caf50;
+  background-color: #5a7a47;
   transition: width 0.3s ease;
+}
+
+/* Home page landing */
+.home {
+  margin-top: 2rem;
+}
+
+.home-pitch {
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+  max-width: 560px;
+}
+
+.home-attribution {
+  font-size: 0.9rem;
+  color: #7a6040;
+  margin-bottom: 2rem;
+}
+
+.home-ctas {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.home-ctas a,
+.cta-link {
+  font-family: 'Cinzel', 'Times New Roman', serif;
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+  padding: 0.6rem 1.4rem;
+  border: 1px solid #c8b89a;
+  border-radius: 4px;
+  background-color: #fdf9f3;
+  color: #7a3b1e;
+  transition:
+    background-color 0.15s,
+    border-color 0.15s;
+}
+
+.home-ctas a:hover,
+.cta-link:hover {
+  background-color: #f0e8d8;
+  border-color: #7a3b1e;
+  color: #4a1e0a;
+}
+
+/* Top navigation row: [Back] [====progress====] [Next] */
+.page-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.page-nav-bar {
+  flex: 1;
 }

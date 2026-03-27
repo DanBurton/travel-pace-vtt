@@ -23,6 +23,7 @@ import {
   moreRoles,
 } from '../data/descriptors'
 import { renderScenario, scenarios } from '../data/scenarios'
+import HintDeck from '../components/hintDeck'
 
 export const playSteps = [
   'Start: The first player establishes the world and scenario.',
@@ -169,7 +170,7 @@ export const playPages: PlayPage[] = [
     <div>
       <h2>Character Creation</h2>
       <p>
-        <strong>{character.description || 'Undefined Enigma'}</strong>
+        <strong>{character.description || defaultDescription}</strong>
         <br />
         Name:{' '}
         <input
@@ -190,7 +191,6 @@ export const playPages: PlayPage[] = [
         Physical Description:{' '}
         <input
           type='text'
-          style={{ width: '100%' }}
           value={character.physicalDescription || ''}
           onChange={(e) =>
             setCharacter({
@@ -220,7 +220,7 @@ export const playPages: PlayPage[] = [
         </p>
         <ul>
           <li key='player'>{characterToString(character)}</li>
-          {(otherPlayers || []).map((player, index) => {
+          {otherPlayers.map((player, index) => {
             return (
               <li key={`other-player-${index}`}>
                 {player}{' '}
@@ -309,60 +309,43 @@ export const playPages: PlayPage[] = [
     )
   },
   ({ players, playerOrder }) => {
-    const [currentPlayStep, setCurrentPlayStep] = React.useState(0)
-    const [currentHintIndex, setCurrentHintIndex] = React.useState(0)
-    const hint = roleplayHints[currentHintIndex]
-    const [currentScenarioIndex, setCurrentScenarioIndex] = React.useState(0)
-    const scenario = scenarios[currentScenarioIndex]
     return (
       <div>
-        <div className='header-with-button'>
-          <h2>Play!</h2>
-          <button
-            onClick={() =>
-              setCurrentPlayStep((currentPlayStep + 1) % playSteps.length)
-            }
-          >
-            Next Step
-          </button>
-        </div>
-
-        <p>{playSteps[currentPlayStep]}</p>
+        <h2>Play!</h2>
+        <h3>Players</h3>
         <ol>
           {playerOrder.map((index) => (
             <li key={index}>{players[index]}</li>
           ))}
         </ol>
+        <h3>Steps</h3>
+        <HintDeck count={playSteps.length}>
+          {(i) => {
+            const [title, ...rest] = playSteps[i].split(': ')
+            return (
+              <p>
+                <strong>[{title}]</strong> {rest.join(': ')}
+              </p>
+            )
+          }}
+        </HintDeck>
         <div>
-          <div className='header-with-button'>
-            <h3>Roleplay Hint</h3>
-            <button
-              onClick={() =>
-                setCurrentHintIndex(
-                  (currentHintIndex + 1) % roleplayHints.length
-                )
-              }
-            >
-              Next Hint
-            </button>
+          <h3>Roleplay Hint</h3>
+          <HintDeck count={roleplayHints.length}>
+            {(i) => (
+              <p>
+                <strong>{`[Suggestion #${i + 1}]`}</strong> {roleplayHints[i]}
+              </p>
+            )}
+          </HintDeck>
+          <h3>Campaign Scenario</h3>
+          <div>
+            {' '}
+            <small>Quick starter. Try making your own!</small>{' '}
           </div>
-          <p>
-            <strong>{`[Suggestion #${currentHintIndex + 1}]`}</strong> {hint}
-          </p>
-          <div className='header-with-button'>
-            <h3>Campaign Scenario</h3>
-            <button
-              onClick={() =>
-                setCurrentScenarioIndex(
-                  (currentScenarioIndex + 1) % scenarios.length
-                )
-              }
-            >
-              Next Scenario
-            </button>
-          </div>
-          <small>Quick starter. Try making your own!</small>
-          {renderScenario(currentScenarioIndex)}
+          <HintDeck count={scenarios.length}>
+            {(i) => <div>{renderScenario(i)}</div>}
+          </HintDeck>
         </div>
       </div>
     )

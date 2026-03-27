@@ -7,44 +7,11 @@ import {
   createRoutesFromElements,
   RouterProvider,
   useOutlet,
-  useLocation,
 } from 'react-router'
 import Learn from './pages/learn'
 import Play from './pages/play'
 
 const basename = import.meta.env.BASE_URL
-
-function PdfButton() {
-  return (
-    <a
-      href={`${basename}Travel%20Pace%20v0.6.1.pdf`}
-      target='_blank'
-      rel='noopener noreferrer'
-    >
-      PDF
-    </a>
-  )
-}
-
-function LearnButton() {
-  const location = useLocation()
-  const active = location.pathname.startsWith(`/learn`)
-  return (
-    <NavLink className={active ? 'activeNav' : 'inactiveNav'} to='/learn'>
-      Learn
-    </NavLink>
-  )
-}
-
-function PlayButton() {
-  const location = useLocation()
-  const active = location.pathname.startsWith(`/play`)
-  return (
-    <NavLink className={active ? 'activeNav' : 'inactiveNav'} to='/play'>
-      Play
-    </NavLink>
-  )
-}
 
 function AppLayout() {
   const children = useOutlet()
@@ -58,9 +25,29 @@ function AppLayout() {
           <NavLink to='/'>Travel Pace</NavLink>
         </h1>
         <nav>
-          <PdfButton />
-          <LearnButton />
-          <PlayButton />
+          <a
+            href={`${basename}Travel%20Pace%20v0.6.1.pdf`}
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            PDF
+          </a>
+          <NavLink
+            to='/learn'
+            className={({ isActive }) =>
+              isActive ? 'activeNav' : 'inactiveNav'
+            }
+          >
+            Learn
+          </NavLink>
+          <NavLink
+            to='/play'
+            className={({ isActive }) =>
+              isActive ? 'activeNav' : 'inactiveNav'
+            }
+          >
+            Play
+          </NavLink>
         </nav>
       </div>
       <div id='page'>{children}</div>
@@ -70,10 +57,18 @@ function AppLayout() {
 
 function Home() {
   return (
-    <div>
-      A game by Warren.
-      <br />
-      Web app by Dan Burton.
+    <div className='home'>
+      <p className='home-pitch'>
+        An improv RPG designed for quick pick-up and play. Create characters,
+        narrate scenes, and roleplay the moments in between.
+      </p>
+      <p className='home-attribution'>
+        A game by Warren. Web app by Dan Burton.
+      </p>
+      <div className='home-ctas'>
+        <NavLink to='/learn'>Learn the Rules</NavLink>
+        <NavLink to='/play'>Start Playing</NavLink>
+      </div>
     </div>
   )
 }

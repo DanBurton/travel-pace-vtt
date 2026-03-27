@@ -7,28 +7,12 @@ import {
   sampleOtherPlayers,
   samplePlayerOrder,
 } from '../data/dev'
-import ProgressBar from '../components/progressBar'
+import PageNav from '../components/pageNav'
 
 export default function Play() {
   const params = useParams()
   const page: number = parseInt(params.page || '0', 10) || 0
   const isLastPage: boolean = page >= playPages.length - 1
-  const BackButton = () => (
-    <NavLink
-      className={'link-button'}
-      to={page > 0 ? `/play/${page - 1}` : '/'}
-    >
-      Back
-    </NavLink>
-  )
-  const NextButton = () =>
-    isLastPage ? (
-      <></>
-    ) : (
-      <NavLink className={'link-button'} to={`/play/${page + 1}`}>
-        Next
-      </NavLink>
-    )
 
   const [character, setCharacter] = React.useState<Character>(
     flags.prefill ? sampleCharacter : {}
@@ -58,9 +42,7 @@ export default function Play() {
   const PageContent = playPages[page]
   return (
     <div>
-      <BackButton /> <NextButton />
-      <br />
-      <ProgressBar page={page} total={playPages.length} />
+      <PageNav prefix='/play' page={page} total={playPages.length} />
       <PageContent
         character={character}
         setCharacter={setCharacter}
@@ -73,7 +55,11 @@ export default function Play() {
         playerOrder={playerOrder}
         setPlayerOrder={setPlayerOrder}
       />
-      <NextButton />
+      {!isLastPage && (
+        <NavLink className={'link-button'} to={`/play/${page + 1}`}>
+          Next
+        </NavLink>
+      )}
     </div>
   )
 }

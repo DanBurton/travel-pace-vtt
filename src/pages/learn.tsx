@@ -1,22 +1,16 @@
 import { useParams, NavLink } from 'react-router'
 import { learnPages } from './learnPages'
-import ProgressBar from '../components/progressBar'
+import PageNav from '../components/pageNav'
 
 export default function Learn() {
   const params = useParams()
   const page: number = parseInt(params.page || '0', 10) || 0
   const isLastPage: boolean = page >= learnPages.length - 1
-  const BackButton = () => (
-    <NavLink
-      className={'link-button'}
-      to={page > 0 ? `/learn/${page - 1}` : '/'}
-    >
-      Back
-    </NavLink>
-  )
-  const NextButton = () =>
+  const BottomButton = () =>
     isLastPage ? (
-      <></>
+      <NavLink className={'cta-link'} to='/play'>
+        Start Playing
+      </NavLink>
     ) : (
       <NavLink className={'link-button'} to={`/learn/${page + 1}`}>
         Next
@@ -26,14 +20,10 @@ export default function Learn() {
 
   return (
     <div>
-      <div>
-        <BackButton /> <NextButton />
-        <br />
-        <ProgressBar page={page} total={learnPages.length} />
-      </div>
+      <PageNav prefix='/learn' page={page} total={learnPages.length} />
       <PageContent />
       <div>
-        <NextButton />
+        <BottomButton />
       </div>
     </div>
   )

@@ -25,7 +25,8 @@ describe('Play smoke', () => {
       screen.getByRole('heading', { name: 'Character Creation' })
     ).toBeInTheDocument()
     expect(screen.getByText('Adventurer Description')).toBeInTheDocument()
-    expect(screen.getAllByRole('link', { name: 'Next' })).toHaveLength(2)
+    expect(screen.getByRole('link', { name: '→' })).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: 'Next' })).toBeInTheDocument()
     expect(router.state.location.pathname).toBe('/play/0')
   })
 
@@ -35,7 +36,7 @@ describe('Play smoke', () => {
     expect(
       screen.getByRole('heading', { name: 'Character Creation' })
     ).toBeInTheDocument()
-    expect(screen.getByRole('link', { name: 'Back' })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: '←' })).toHaveAttribute(
       'href',
       '/play/0'
     )
@@ -47,7 +48,7 @@ describe('Play smoke', () => {
     const router = renderPlay('/play/4')
 
     expect(screen.getByRole('heading', { name: 'Play!' })).toBeInTheDocument()
-    expect(screen.queryByRole('link', { name: 'Next' })).not.toBeInTheDocument()
+    expect(screen.queryByRole('link', { name: '→' })).not.toBeInTheDocument()
     expect(router.state.location.pathname).toBe('/play/4')
   })
 })
