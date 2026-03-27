@@ -1,5 +1,5 @@
 export const flags = {
-  prefill: true,
+  prefill: false,
 }
 
 export const sampleCharacter = {
