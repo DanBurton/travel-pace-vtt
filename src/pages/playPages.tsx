@@ -22,14 +22,15 @@ import {
   roles,
   moreRoles,
 } from '../data/descriptors'
-import { renderScenario, scenarios } from '../data/scenarios'
+import { scenarios } from '../data/scenarios'
+import Card from '../components/card'
 import HintDeck from '../components/hintDeck'
 
 export const playSteps = [
   'Start: The first player establishes the world and scenario.',
   'Turns: Players go in order setting the next scene to roleplay.',
   'End: The last player describes the final confrontation.',
-  `Epilogue: go in reverse order describing your character's ending.`,
+  `Epilogue: Go in reverse order describing your character's ending.`,
 ]
 
 export const roleplayHints = [
@@ -313,39 +314,79 @@ export const playPages: PlayPage[] = [
       <div>
         <h2>Play!</h2>
         <h3>Players</h3>
-        <ol>
-          {playerOrder.map((index) => (
-            <li key={index}>{players[index]}</li>
-          ))}
-        </ol>
-        <h3>Steps</h3>
-        <HintDeck count={playSteps.length}>
-          {(i) => {
-            const [title, ...rest] = playSteps[i].split(': ')
+        <div className='player-cards'>
+          {playerOrder.map((playerIdx, turnOrder) => {
+            const parts = players[playerIdx].split('|').map((s) => s.trim())
+            const title = (parts.length > 1 ? parts[0] : `Player ${turnOrder + 1}`).replace(/ /g, '\u00A0')
+            let content: React.ReactNode
+            if (parts.length === 4) {
+              const [, pronouns, description, physDesc] = parts
+              content = (
+                <div className='player-card-content'>
+                  <div className='player-inline'>
+                    <span className='player-description'>{description}</span>
+                    <span className='player-pronouns'>{pronouns}</span>
+                  </div>
+                  <p className='player-phys-desc'>{physDesc}</p>
+                </div>
+              )
+            } else {
+              content = (
+                <div className='player-card-content'>
+                  {parts.slice(1).map((part, i) => <p key={i}>{part}</p>)}
+                </div>
+              )
+            }
             return (
-              <p>
-                <strong>[{title}]</strong> {rest.join(': ')}
-              </p>
+              <Card key={playerIdx} type='player' number={turnOrder + 1} title={title}>
+                {content}
+              </Card>
             )
-          }}
-        </HintDeck>
-        <div>
-          <h3>Roleplay Hint</h3>
-          <HintDeck count={roleplayHints.length}>
-            {(i) => (
-              <p>
-                <strong>{`[Suggestion #${i + 1}]`}</strong> {roleplayHints[i]}
-              </p>
-            )}
-          </HintDeck>
-          <h3>Campaign Scenario</h3>
-          <div>
-            {' '}
-            <small>Quick starter. Try making your own!</small>{' '}
+          })}
+        </div>
+        <div className='play-decks'>
+          <div className='play-deck'>
+            <h3>Steps</h3>
+            <HintDeck count={playSteps.length}>
+              {(i, prev, next) => {
+                const [title, ...rest] = playSteps[i].split(': ')
+                return (
+                  <Card type='step' number={i + 1} title={title} prev={prev} next={next}>
+                    <p>{rest.join(': ')}</p>
+                  </Card>
+                )
+              }}
+            </HintDeck>
           </div>
-          <HintDeck count={scenarios.length}>
-            {(i) => <div>{renderScenario(i)}</div>}
-          </HintDeck>
+          <div className='play-deck'>
+            <h3>Roleplay Hint</h3>
+            <HintDeck count={roleplayHints.length}>
+              {(i, prev, next) => (
+                <Card type='roleplay hint' number={i + 1} title='Suggestion' prev={prev} next={next}>
+                  <p>{roleplayHints[i]}</p>
+                </Card>
+              )}
+            </HintDeck>
+          </div>
+          <div className='play-deck'>
+            <h3>Campaign Scenario</h3>
+            <small>Quick starter. Try making your own!</small>
+            <HintDeck count={scenarios.length}>
+              {(i, prev, next) => (
+                <Card
+                  type='campaign scenario'
+                  number={i + 1}
+                  title={scenarios[i].name}
+                  prev={prev}
+                  next={next}
+                >
+                  {scenarios[i].description.map((paragraph, j) => (
+                    <p key={j}>{paragraph}</p>
+                  ))}
+                </Card>
+              )}
+            </HintDeck>
+          </div>
         </div>
       </div>
     )

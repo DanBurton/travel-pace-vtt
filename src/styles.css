@@ -153,16 +153,75 @@ video {
   }
 }
 
-/* HintDeck: navigable card */
+/* HintDeck */
 .hint-deck {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.5rem;
   margin: 0.5rem 0;
 }
 
-.hint-deck-card {
+.hint-deck-viewport {
+  display: grid;
+  grid-template-columns: 1fr;
+  overflow: hidden;
+}
+
+.hint-deck-slide {
+  grid-area: 1 / 1 / 2 / 2;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.hint-deck-slide-active {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.hint-deck-slide-before {
+  transform: translateX(-110%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.hint-deck-slide-after {
+  transform: translateX(110%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Card header: prev button | meta+title | next button */
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.card-header-text {
   flex: 1;
+  min-width: 0;
+  text-align: center;
+  overflow-wrap: normal;
+  container-type: inline-size;
+}
+
+.hint-deck-btn {
+  flex-shrink: 0;
+  background: transparent;
+  border: none;
+  color: #b0956e;
+  font-size: 1.1rem;
+  padding: 0.25rem 0.35rem;
+  cursor: pointer;
+  border-radius: 4px;
+  line-height: 1;
+}
+
+.hint-deck-btn:hover {
+  background: transparent;
+  border: none;
+  color: #7a3b1e;
+}
+
+/* Card */
+.card {
   background-color: #f0e8d8;
   border: 1px solid #c8b89a;
   border-radius: 6px;
@@ -170,8 +229,101 @@ video {
   box-shadow: 0 1px 4px rgba(45, 31, 14, 0.08);
 }
 
-.hint-deck-card p {
+.card-type-player {
+  background-color: #e8eee4;
+}
+
+.card-type-player .card-title {
+  font-size: clamp(1rem, 5.5cqi, 2rem);
+}
+
+.card-meta {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #7a3b1e;
+  margin-bottom: 0.25rem;
+}
+
+.card-title {
+  font-family: 'Cinzel', 'Times New Roman', serif;
+  font-size: 1rem;
   margin: 0;
+}
+
+.card-content {
+  border-top: 1px solid #c8b89a;
+  padding-top: 0.5rem;
+}
+
+.card-content p {
+  margin: 0;
+}
+
+/* Player cards grid */
+.player-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin: 0.5rem 0;
+}
+
+.player-cards > * {
+  min-width: 0;
+}
+
+@media (min-width: 768px) {
+  .player-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.player-card-content p {
+  margin: 0;
+}
+
+.player-inline {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.25rem;
+}
+
+.player-pronouns {
+  font-size: 0.85rem;
+  color: #7a6040;
+  margin-left: auto;
+}
+
+.player-description {
+  font-weight: 600;
+}
+
+.player-phys-desc {
+  font-size: 0.85rem;
+  font-style: italic;
+}
+
+/* Three-deck grid on the Play page */
+.play-decks {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  align-items: start;
+  margin: 0.5rem 0;
+}
+
+/* Wide enough: Steps + Roleplay Hint side by side */
+@media (min-width: 768px) {
+  .play-decks {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Campaign scenario always on its own row */
+.play-deck:last-child {
+  grid-column: 1 / -1;
 }
 
 /* Sortable player item styles */
