@@ -9,7 +9,14 @@ interface CardProps {
   next?: React.ReactNode
 }
 
-export default function Card({ type, number, title, children, prev, next }: CardProps) {
+export default function Card({
+  type,
+  number,
+  title,
+  children,
+  prev,
+  next,
+}: CardProps) {
   const headerTextRef = React.useRef<HTMLDivElement>(null)
   const titleRef = React.useRef<HTMLHeadingElement>(null)
 
@@ -21,7 +28,7 @@ export default function Card({ type, number, title, children, prev, next }: Card
       titleEl.style.fontSize = ''
       const w = header.clientWidth
       if (w > 0 && titleEl.scrollWidth > w) {
-        titleEl.style.fontSize = `${parseFloat(getComputedStyle(titleEl).fontSize) * w / titleEl.scrollWidth}px`
+        titleEl.style.fontSize = `${(parseFloat(getComputedStyle(titleEl).fontSize) * w) / titleEl.scrollWidth}px`
       }
     }
     const ro = new ResizeObserver(fit)
@@ -34,8 +41,12 @@ export default function Card({ type, number, title, children, prev, next }: Card
       <div className='card-header'>
         {prev}
         <div className='card-header-text' ref={headerTextRef}>
-          <div className='card-meta'>{type} #{number}</div>
-          <h4 className='card-title' ref={titleRef}>{title}</h4>
+          <div className='card-meta'>
+            {type} #{number}
+          </div>
+          <h4 className='card-title' ref={titleRef}>
+            {title}
+          </h4>
         </div>
         {next}
       </div>

@@ -166,7 +166,9 @@ video {
 
 .hint-deck-slide {
   grid-area: 1 / 1 / 2 / 2;
-  transition: transform 0.25s ease, opacity 0.25s ease;
+  transition:
+    transform 0.25s ease,
+    opacity 0.25s ease;
 }
 
 .hint-deck-slide-active {

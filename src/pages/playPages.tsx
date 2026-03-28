@@ -317,7 +317,9 @@ export const playPages: PlayPage[] = [
         <div className='player-cards'>
           {playerOrder.map((playerIdx, turnOrder) => {
             const parts = players[playerIdx].split('|').map((s) => s.trim())
-            const title = (parts.length > 1 ? parts[0] : `Player ${turnOrder + 1}`).replace(/ /g, '\u00A0')
+            const title = (
+              parts.length > 1 ? parts[0] : `Player ${turnOrder + 1}`
+            ).replace(/ /g, '\u00A0')
             let content: React.ReactNode
             if (parts.length === 4) {
               const [, pronouns, description, physDesc] = parts
@@ -333,12 +335,19 @@ export const playPages: PlayPage[] = [
             } else {
               content = (
                 <div className='player-card-content'>
-                  {parts.slice(1).map((part, i) => <p key={i}>{part}</p>)}
+                  {parts.slice(1).map((part, i) => (
+                    <p key={i}>{part}</p>
+                  ))}
                 </div>
               )
             }
             return (
-              <Card key={playerIdx} type='player' number={turnOrder + 1} title={title}>
+              <Card
+                key={playerIdx}
+                type='player'
+                number={turnOrder + 1}
+                title={title}
+              >
                 {content}
               </Card>
             )
@@ -351,7 +360,13 @@ export const playPages: PlayPage[] = [
               {(i, prev, next) => {
                 const [title, ...rest] = playSteps[i].split(': ')
                 return (
-                  <Card type='step' number={i + 1} title={title} prev={prev} next={next}>
+                  <Card
+                    type='step'
+                    number={i + 1}
+                    title={title}
+                    prev={prev}
+                    next={next}
+                  >
                     <p>{rest.join(': ')}</p>
                   </Card>
                 )
@@ -362,7 +377,13 @@ export const playPages: PlayPage[] = [
             <h3>Roleplay Hint</h3>
             <HintDeck count={roleplayHints.length}>
               {(i, prev, next) => (
-                <Card type='roleplay hint' number={i + 1} title='Suggestion' prev={prev} next={next}>
+                <Card
+                  type='roleplay hint'
+                  number={i + 1}
+                  title='Suggestion'
+                  prev={prev}
+                  next={next}
+                >
                   <p>{roleplayHints[i]}</p>
                 </Card>
               )}

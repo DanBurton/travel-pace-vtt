@@ -38,7 +38,11 @@ export default function HintDeck({ count, children }: HintDeckProps) {
               className={`hint-deck-slide hint-deck-slide-${position}`}
               aria-hidden={i !== index}
             >
-              {children(i, i === index ? prev : undefined, i === index ? next : undefined)}
+              {children(
+                i,
+                i === index ? prev : undefined,
+                i === index ? next : undefined
+              )}
             </div>
           )
         })}
